@@ -12,7 +12,7 @@ public class DBInsertor
            String driver = "com.mysql.jdbc.Driver";
 
            // URL指向要访问的数据库名scutcs
-           String url = "jdbc:mysql://127.0.0.1:3306/test3";
+           String url = "jdbc:mysql://127.0.0.1:3306/TextExtraction";
 
            // MySQL配置时的用户名
            String user = "root"; 
@@ -35,7 +35,7 @@ public class DBInsertor
                 Statement statement = conn.createStatement();
 
                 // 要执行的SQL语句
-                String sql = "insert into link_content_4 values ('"+record.getCompanyName().replace("'","")+"','"+record.getLink().replace("'","")+"','"+record.getContent().replace("'","")+"')";
+                String sql = "insert into link_content_3 values ('"+record.getCompanyName().replace("'","")+"','"+record.getLink().replace("'","")+"','"+record.getContent().replace("'","")+"')";
     
                 statement.executeUpdate(sql);
             
@@ -46,7 +46,7 @@ public class DBInsertor
            {
 
 
-            System.out.println("insert into link_content values ('"+record.getCompanyName()+"','"+record.getLink()+"','"+record.getContent()+"')");
+            System.out.println("insert into link_content_3 values ('"+record.getCompanyName()+"','"+record.getLink()+"','"+record.getContent()+"')");
             e.printStackTrace();
 
 

@@ -23,7 +23,7 @@ public class DownloadContentInsertor {
         ArrayList<String> companyNames = new ArrayList();
         try 
         {
-            companyNames = FileFolderIterator.readCompanyNames("/Users/keleigong/Dropbox/work/textExtraction/c.company_text/company_csv/");
+            companyNames = FileFolderIterator.readCompanyNames("/Users/keleigong/Dropbox/work/textExtraction2/c.company_text/company_csv/");
             System.out.println(companyNames.size());
         } 
         catch (FileNotFoundException ex) 
@@ -38,7 +38,7 @@ public class DownloadContentInsertor {
         for(int j=0;j<companyNames.size();j++)//每次循环读一个company的所有url
         {	
         	System.out.println(companyNames.get(j));
-            String path = "/Users/keleigong/Dropbox/work/textExtraction/c.company_text/company_csv/"+companyNames.get(j)+".txt";
+            String path = "/Users/keleigong/Dropbox/work/textExtraction2/c.company_text/company_csv/"+companyNames.get(j)+".txt";
             
             RecordFileLoader.Read(path,companyNames.get(j));
         }
