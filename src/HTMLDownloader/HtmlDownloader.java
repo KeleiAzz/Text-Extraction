@@ -24,7 +24,7 @@ public class HtmlDownloader
 		{
 			URL url = new URL(pageURL);
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-			connection.setRequestProperty("User-Agent", "MSIE 7.0");
+			connection.setRequestProperty("User-Agent", "Mozilla/5.0 (compatible; MSIE 7.0; Windows NT 5.1)");
 			BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), encoding));
 			String line = null;
 			while ((line = br.readLine()) != null)
