@@ -30,7 +30,7 @@ public class ProfilePreProcessingForCategory
 	public static void main(String[] args)
 	{
 		ProfilePreProcessing preprocessor = new ProfilePreProcessing();
-		companyNames = getCompanyNames("company_list_2013");
+		companyNames = getCompanyNames("link_content");
 
 		String srmConteng = new String("");
 		//String spmConteng = new String("");

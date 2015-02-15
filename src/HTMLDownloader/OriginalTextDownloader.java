@@ -37,12 +37,13 @@ public class OriginalTextDownloader
 	public static void main(String args[])
 	{
 		//Phrase Dictionary List
-		PhraseReader phraseReader = new PhraseReader("/Users/keleigong/Dropbox/work/textExtraction2/phrase.xlsx");
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/second run/";
+		PhraseReader phraseReader = new PhraseReader(filepath + "phrase.xlsx");
 		phraseDictionary = phraseReader.ReadPhraseExcel();
 		System.out.println("there r "+phraseDictionary.size()+" phrase dictionary items");
 
 		//load stopwords list
-		UrlListReader stopWordReader = new UrlListReader("/Users/keleigong/Dropbox/work/textExtraction2/stopwords.xlsx");
+		UrlListReader stopWordReader = new UrlListReader(filepath + "stopwords.xlsx");
 		stopWordList = stopWordReader.ReadExcel();
 		System.out.println("there r "+stopWordList.size()+" stop words");
 
@@ -50,7 +51,7 @@ public class OriginalTextDownloader
 		ArrayList<String> companyNames = new ArrayList();
 		try
 		{
-			companyNames = FileFolderIterator.readCompanyNames("/Users/keleigong/Dropbox/work/textExtraction2/b.company_url");
+			companyNames = FileFolderIterator.readCompanyNames(filepath + "b.company_url");
 			System.out.println(companyNames.size());
 		}
 		catch (FileNotFoundException ex)
@@ -76,10 +77,10 @@ public class OriginalTextDownloader
 			deadCounter=0;
 
 			//create folders for each company names
-			FileOperator.newFolder("/Users/keleigong/Dropbox/work/textExtraction2/pdfdownloader/"+companyNames.get(j));
+			FileOperator.newFolder(filepath + "pdfdownloader/"+companyNames.get(j));
 
 			//Read URL list
-			UrlListReader urlReader = new UrlListReader("/Users/keleigong/Dropbox/work/textExtraction2/b.company_url/"+companyNames.get(j)+".xlsx");
+			UrlListReader urlReader = new UrlListReader(filepath + "b.company_url/"+companyNames.get(j)+".xlsx");
 			ArrayList<String> urlArrayList = urlReader.ReadExcel();
 			System.out.println("there r "+urlArrayList.size()+" urls for company:"+companyNames.get(j));
 
@@ -106,7 +107,7 @@ public class OriginalTextDownloader
 				{
 					pdfCounter++;
 					System.out.println(urlArrayList.get(i));
-					boolean res = PdfDownloader.downloadFromUrl(urlArrayList.get(i).replace("http//", "http://"),"/Users/keleigong/Dropbox/work/textExtraction2/pdfdownloader/"+companyNames.get(j)+"/",companyNames.get(j)+pdfCounter+".pdf");
+					boolean res = PdfDownloader.downloadFromUrl(urlArrayList.get(i).replace("http//", "http://"),filepath + "pdfdownloader/"+companyNames.get(j)+"/",companyNames.get(j)+pdfCounter+".pdf");
 					if(res==false)//pdf文件有问题或不能下载
 					{
 						deadPdfCounter++;
@@ -115,7 +116,7 @@ public class OriginalTextDownloader
 					else//如果能下载,读取文件内容并打印
 					{
 						//System.out.println(PdfReader.readFileOfPDF("d://pdfdownload//"+companyNames.get(j)+"//"+companyNames.get(j)+pdfCounter+".pdf"));
-						AllCompanyContent+=urlArrayList.get(i)+"\r\n"+PdfReaderOriginalText.readFileOfPDF("/Users/keleigong/Dropbox/work/textExtraction2/pdfdownloader/"+companyNames.get(j)+"/"+companyNames.get(j)+pdfCounter+".pdf")+"\r\n==========\r\n";
+						AllCompanyContent+=urlArrayList.get(i)+"\r\n"+PdfReaderOriginalText.readFileOfPDF(filepath + "pdfdownloader/"+companyNames.get(j)+"/"+companyNames.get(j)+pdfCounter+".pdf")+"\r\n==========\r\n";
 					}
 				}
 				System.out.println("dead  link # "+deadCounter+" over total: "+htmlCounter);
@@ -131,11 +132,11 @@ public class OriginalTextDownloader
 			{
 				deadLinkString += companyNames.get(j)+","+deadLink.get(i)+"\r\n";
 			}
-			CSVWriter.Write("/Users/keleigong/Dropbox/work/textExtraction2/deadlink.csv",deadLinkString);
+			CSVWriter.Write(filepath + "deadlink.csv",deadLinkString);
 
 
 			//write csv for current company
-			CSVWriter.Write("/Users/keleigong/Dropbox/work/textExtraction2/c.company_text/company_csv/"+companyNames.get(j)+".txt",AllCompanyContent);
+			CSVWriter.Write(filepath + "c.company_text/company_csv/"+companyNames.get(j)+".txt",AllCompanyContent);
 
 		}
 
