@@ -7,6 +7,8 @@ package RiTaTest;
 import net.didion.jwnl.*;
 import net.didion.jwnl.data.*;
 import net.didion.jwnl.dictionary.*;
+//import org.tartarus.snowball.EnglishSnowballStemmerFactory;
+import org.tartarus.snowball.util.StemmerException;
 
 import java.io.*;
 import java.util.Vector;
@@ -16,6 +18,7 @@ import java.util.HashMap;
 //import java.util.logging.Logger;
 
 
+
 public class DictTest {
 	private int MaxWordLength = 50;
 	private Dictionary dic;
@@ -23,7 +26,7 @@ public class DictTest {
 	private boolean IsInitialized = false;
 	public HashMap AllWords = null;
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws StemmerException {
 //		DictTest();
 		DictTest test = new DictTest();
 //		test.Unload();
@@ -31,8 +34,10 @@ public class DictTest {
 		System.out.println(t);
 		t = test.StemWordWithWordNet("packages");
 		System.out.println(t);
-		t = test.Stem("papers");
+		t = test.StemWordWithWordNet("packages");
 		System.out.println(t);
+//		String s = EnglishSnowballStemmerFactory.getInstance().process("packages");
+//		System.out.println(s);
 //		test.Unload();
 	}
 	public DictTest()
@@ -41,7 +46,7 @@ public class DictTest {
 
 		try
 		{
-			JWNL.initialize(new FileInputStream("file_properties.xml"));
+			JWNL.initialize(new FileInputStream("/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/RiTaTest/file_properties.xml"));
 			dic = Dictionary.getInstance();
 			morph = dic.getMorphologicalProcessor();
 			// ((AbstractCachingDictionary)dic).

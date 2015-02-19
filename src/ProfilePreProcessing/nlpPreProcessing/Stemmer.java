@@ -64,7 +64,7 @@ public class Stemmer
             stringsToBeStemmed.add("our"); 
             stringsToBeStemmed.add("without"); 
             stringsToBeStemmed.add("for"); 
-            stringsToBeStemmed.add("from"); 
+            stringsToBeStemmed.add("studied");
             stringsToBeStemmed.add("these"); 
             for(int i = 0; i< stringsToBeStemmed.size(); i++)
             {
