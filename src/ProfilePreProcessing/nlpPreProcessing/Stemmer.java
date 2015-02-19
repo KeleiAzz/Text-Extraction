@@ -65,7 +65,7 @@ public class Stemmer
             stringsToBeStemmed.add("without"); 
             stringsToBeStemmed.add("for"); 
             stringsToBeStemmed.add("studied");
-            stringsToBeStemmed.add("these"); 
+            stringsToBeStemmed.add("acquires");
             for(int i = 0; i< stringsToBeStemmed.size(); i++)
             {
                     String word = stringsToBeStemmed.get(i);

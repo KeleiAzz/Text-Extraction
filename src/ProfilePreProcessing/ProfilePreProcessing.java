@@ -45,12 +45,12 @@ public class ProfilePreProcessing
 
 		try {
 //			String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
-			JWNL.initialize(new FileInputStream("/users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/RiTaTest/file_properties.xml"));
+			JWNL.initialize(new FileInputStream(propsFile));
 		} catch (JWNLException e) {
 //			e.printStackTrace();
 		}
 
-//		stemmer = new Stemmer();
+		stemmer = new Stemmer();
 		test = new DictTest();
 
 
@@ -159,8 +159,8 @@ public class ProfilePreProcessing
 			splittedProfile[i]=stopWordEliminator.deleteStopWords(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.LeaveEngLetter(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.ReplaceComma(splittedProfile[i]);
-//			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
-			splittedProfile[i]=test.StemCompanyContent(splittedProfile[i]);
+			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
+//			splittedProfile[i]=test.StemCompanyContent(splittedProfile[i]);
 			//splittedProfile[i]=checker.checkCompanyContent(splittedProfile[i]);
 		}
 
