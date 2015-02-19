@@ -18,7 +18,8 @@ public class DictionaryItemReplacer
     
     public DictionaryItemReplacer() 
     {
-        PhraseReader phraseReader = new PhraseReader("J://SCRC ML 2013 summer//data extraction//phrase.xlsx");
+	    String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/";
+        PhraseReader phraseReader = new PhraseReader(filepath + "phrase.xlsx");
         phraseDictionary = phraseReader.ReadPhraseExcel();
         System.out.println("there r "+phraseDictionary.size()+" phrase dictionary items");
         

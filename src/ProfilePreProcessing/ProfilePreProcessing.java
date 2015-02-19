@@ -6,10 +6,8 @@ package ProfilePreProcessing;
 import ProfilePreProcessing.DBInsertor.DBInsertor;
 import ProfilePreProcessing.DBInsertor.PreProcessedContent;
 import HTMLDownloader.CSVWriter;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
+import java.io.*;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -25,7 +23,9 @@ import ProfilePreProcessing.nlpPreProcessing.Stemmer;
 import ProfilePreProcessing.nlpPreProcessing.StopWordEliminator;
 import ProfilePreProcessing.nlpPreProcessing.UpperLetterFlipper;
 import ProfilePreProcessing.nlpPreProcessing.WordListChecker;
-
+import net.didion.jwnl.JWNL;
+import net.didion.jwnl.JWNLException;
+import RiTaTest.DictTest;
 /**
  *
  * @author SCRC
@@ -36,13 +36,23 @@ public class ProfilePreProcessing
 	private DictionaryItemReplacer dicReplacer;
 	private StopWordEliminator stopWordEliminator;
 	private Stemmer stemmer;
-
-	public ProfilePreProcessing()
-	{
+	private DictTest test;
+	public ProfilePreProcessing() throws FileNotFoundException {
 		//checker = new WordListChecker("D:\\wordlist.txt");
 		dicReplacer = new DictionaryItemReplacer();
 		stopWordEliminator = new StopWordEliminator();
-		stemmer = new Stemmer();
+		String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
+
+		try {
+//			String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
+			JWNL.initialize(new FileInputStream("/users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/RiTaTest/file_properties.xml"));
+		} catch (JWNLException e) {
+//			e.printStackTrace();
+		}
+
+//		stemmer = new Stemmer();
+		test = new DictTest();
+
 
 	}
 
@@ -69,18 +79,18 @@ public class ProfilePreProcessing
 	private static ArrayList<String> getCompanyNames()
 	{
 		ArrayList<String> companyNames = new ArrayList();
-		String sql = "select DISTINCT company from link_content_4";
+		String sql = "select DISTINCT company_name from link_content_2014";
 
 		ResultSet rs=null;
 		Connection  conn;
 		try
 		{
-			conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost/ml","root","root");
+			conn = java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/TextExtraction","root","");
 			Statement stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
 			{
-				companyNames.add(rs.getString("company"));
+				companyNames.add(rs.getString("company_name"));
 			}
 		}
 		catch (SQLException ex)
@@ -94,12 +104,12 @@ public class ProfilePreProcessing
 	private static String getCompanyProfile(String companyName)
 	{
 		String companyProfile = new String("");
-		String sql = "select content from link_content_4 where company='"+companyName+"'";
+		String sql = "select content from link_content_2014 where company='"+companyName+"'";
 		ResultSet rs=null;
 		Connection  conn;
 		try
 		{
-			conn = java.sql.DriverManager.getConnection("jdbc:mysql://localhost/ml","root","root");
+			conn = java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/TextExtraction","root","");
 			Statement stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -121,6 +131,7 @@ public class ProfilePreProcessing
 
 				in.close();
 			}
+			conn.close();
 		}
 		catch (SQLException ex)
 		{
@@ -148,7 +159,8 @@ public class ProfilePreProcessing
 			splittedProfile[i]=stopWordEliminator.deleteStopWords(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.LeaveEngLetter(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.ReplaceComma(splittedProfile[i]);
-			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
+//			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
+			splittedProfile[i]=test.StemCompanyContent(splittedProfile[i]);
 			//splittedProfile[i]=checker.checkCompanyContent(splittedProfile[i]);
 		}
 

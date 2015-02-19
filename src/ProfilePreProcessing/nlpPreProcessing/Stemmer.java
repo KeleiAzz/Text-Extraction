@@ -1,22 +1,25 @@
 package ProfilePreProcessing.nlpPreProcessing;
 
 //import java.io.FileInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import rita.wordnet.RiWordnet;
-//import net.didion.jwnl.JWNL;
+import net.didion.jwnl.JWNL;
 import net.didion.jwnl.JWNLException;
 
 public class Stemmer 
 {
-    private RiWordnet rwordnet;
 
-    public Stemmer() 
-    {
-        rwordnet = new RiWordnet();
+    public RiWordnet rwordnet;
+
+    public Stemmer() throws FileNotFoundException {
+
+	    rwordnet = new RiWordnet();
     }
     
 	
@@ -24,7 +27,11 @@ public class Stemmer
     {		
             //initalizing the part-of-speech-tagger 
             //change the path to the location of the stanford POS tagger on your computer
-            //MaxentTagger posTagger = new MaxentTagger("F:/NetBeans Project/stanford-postagger-2013-04-04/models/english-bidirectional-distsim.tagger");
+                //MaxentTagger posTagger = new MaxentTagger("F:/NetBeans Project/stanford-postagger-2013-04-04/models/english-bidirectional-distsim.tagger");
+	        String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
+
+	        JWNL.initialize(new FileInputStream(propsFile));
+
             Stemmer sn = new Stemmer();
             //transfer running to the function to get stem
             ArrayList<String> stringsToBeStemmed = new ArrayList();
@@ -52,7 +59,7 @@ public class Stemmer
             stringsToBeStemmed.add("and"); 
             stringsToBeStemmed.add("than"); 
             stringsToBeStemmed.add("we"); 
-            stringsToBeStemmed.add("against"); 
+            stringsToBeStemmed.add("packages");
             stringsToBeStemmed.add("of"); 
             stringsToBeStemmed.add("our"); 
             stringsToBeStemmed.add("without"); 
@@ -73,19 +80,19 @@ public class Stemmer
         String[] splittedWords=companyContent.split(",");
         for(int i =0;i<splittedWords.length;i++)
         {
-            try 
+            try
             {
                 stemmedCompanyContent=stemmedCompanyContent+ Stem(splittedWords[i])+",";
-            } 
-            catch (JWNLException ex) 
+            }
+            catch (JWNLException ex)
             {
                 Logger.getLogger(Stemmer.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            catch (IOException ex) 
+            }
+            catch (IOException ex)
             {
                 Logger.getLogger(Stemmer.class.getName()).log(Level.SEVERE, null, ex);
-            } 
-            catch (ClassNotFoundException ex) 
+            }
+            catch (ClassNotFoundException ex)
             {
                 Logger.getLogger(Stemmer.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -104,7 +111,9 @@ public class Stemmer
 
         //JWNL.initialize(new FileInputStream(propsFile));
 
+//	    String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
 
+//	    JWNL.initialize(new FileInputStream(propsFile));
 
         // get stems for the word got from main function
         if(rwordnet.getBestPos(token1)==null)

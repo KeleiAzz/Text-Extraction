@@ -17,7 +17,8 @@ public class StopWordEliminator
 
     public StopWordEliminator() 
     {
-        XlsListReader stopWordReader = new XlsListReader("J://SCRC ML 2013 summer//data extraction//stopwords.xlsx");
+	    String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/";
+        XlsListReader stopWordReader = new XlsListReader(filepath + "stopwords.xlsx");
         stopWordList = stopWordReader.ReadExcel();
         System.out.println("there r "+stopWordList.size()+" stop words");
     }

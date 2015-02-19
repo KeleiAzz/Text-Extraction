@@ -13,6 +13,8 @@ public class DBInsertor
 
            // URL指向要访问的数据库名scutcs
            String url = "jdbc:mysql://127.0.0.1:3306/TextExtraction";
+//	    String url = "jdbc:mysql://152.1.153.12:3306/ml";
+
 			String table = "link_content_2014";
            // MySQL配置时的用户名
            String user = "root"; 
