@@ -1,0 +1,3 @@
+The 3M Supplier Direct website was implemented to provide a single point of entry for our valued 3M suppliers and potential suppliers, providing access to an assortment of sourcing and logistics information, as well as several self-serve tools.
+Please review the various parts of the site, share with others in your organization, and check back regularly for updates.
+Of particular interest for current suppliers may be a tool called eSupplier. This system lets you inquire about payment information regarding the status of your invoices to 3M. Many suppliers are already registered for this, but if you are not, please feel free to register now.

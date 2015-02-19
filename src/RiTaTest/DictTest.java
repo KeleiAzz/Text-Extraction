@@ -8,6 +8,7 @@ import net.didion.jwnl.*;
 import net.didion.jwnl.data.*;
 import net.didion.jwnl.dictionary.*;
 //import org.tartarus.snowball.EnglishSnowballStemmerFactory;
+import org.tartarus.snowball.EnglishSnowballStemmerFactory;
 import org.tartarus.snowball.util.StemmerException;
 
 import java.io.*;
@@ -36,8 +37,8 @@ public class DictTest {
 		System.out.println(t);
 		t = test.StemWordWithWordNet("packages");
 		System.out.println(t);
-//		String s = EnglishSnowballStemmerFactory.getInstance().process("packages");
-//		System.out.println(s);
+		String s = EnglishSnowballStemmerFactory.getInstance().process("entry");
+		System.out.println(s);
 //		test.Unload();
 	}
 	public DictTest()

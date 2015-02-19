@@ -382,11 +382,12 @@ class Stemmer
 	{
 		char[] w = new char[501];
 		Stemmer s = new Stemmer();
-		for (int i = 0; i < args.length; i++)
+//		char c = "what";
+		for (int i = 0; i < 1; i++)
 			try
 			{
-				FileInputStream in = new FileInputStream("/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/e.keyword_category/3M CO_SRM.txt");
-
+				FileInputStream in = new FileInputStream("/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/RiTaTest/proter_test.txt");
+				System.out.println("here");
 				try
 				{ while(true)
 
