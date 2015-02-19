@@ -12,8 +12,8 @@ import java.io.*;
 import java.util.Vector;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
 
 
 public class DictTest {

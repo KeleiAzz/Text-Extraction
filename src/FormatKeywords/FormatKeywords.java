@@ -20,7 +20,8 @@ class FormatKeywords{
 	{
 		FormatKeywords fk = new FormatKeywords();
 		//output file
-		PrintWriter csvfile = new PrintWriter(new FileWriter("F:\\SCRC Research\\2013 ML\\Data_Extraction\\f.profiles\\profiles_2013_SRM_no_spell_check.csv"));
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/";
+		PrintWriter csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_SRM_no_spell_check.csv"));
 		csvfile.append("Company Name"); csvfile.append(',');
 		csvfile.append("Profile keywords"); csvfile.append(',');
 		csvfile.append('\n'); csvfile.close();
@@ -37,26 +38,65 @@ class FormatKeywords{
 
 	}
 
-	public void writeFiles(String companyName, String text) throws IOException{
-		PrintWriter csvfile = new PrintWriter(new FileWriter("F:\\SCRC Research\\2013 ML\\Data_Extraction\\f.profiles\\profiles_2013_SRM_no_spell_check.csv", true));
-		csvfile.append(companyName); csvfile.append(',');
-		csvfile.append(text); csvfile.append(',');
-		csvfile.append('\n'); csvfile.close();
+	public void writeFiles(String companyName, String text, int cagtegory) throws IOException{
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/";
+		PrintWriter csvfile;
+//		if (cagtegory.equals("SRM")){
+//			csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_SRM_no_spell_check.csv", true));
+//			csvfile.append(companyName); csvfile.append(',');
+//			csvfile.append(text); csvfile.append(',');
+//			csvfile.append('\n'); csvfile.close();
+//		}
+		switch (cagtegory)
+		{
+			case 1:
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_SRM_no_spell_check.csv", true));
+				csvfile.append(companyName); csvfile.append(',');
+				csvfile.append(text); csvfile.append(',');
+				csvfile.append('\n'); csvfile.close();
+			case 2:
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_LHR_no_spell_check.csv", true));
+				csvfile.append(companyName); csvfile.append(',');
+				csvfile.append(text); csvfile.append(',');
+				csvfile.append('\n'); csvfile.close();
+			case 3:
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_SUS_no_spell_check.csv", true));
+				csvfile.append(companyName); csvfile.append(',');
+				csvfile.append(text); csvfile.append(',');
+				csvfile.append('\n'); csvfile.close();
+		}
+//		csvfile.append(companyName); csvfile.append(',');
+//		csvfile.append(text); csvfile.append(',');
+//		csvfile.append('\n'); csvfile.close();
 	}
 
 
 	public void extractKeywords() throws IOException
 	{
 		FormatKeywords fk = new FormatKeywords();
-		String folder = "F:\\SCRC Research\\2013 ML\\Data_Extraction\\e.keyword_category\\SRM";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/";
+		String folder = filepath + "e.keyword_category";
 		File[] files = new File(folder).listFiles();
 		Pattern p = Pattern.compile("^[A-Za-z]+$", Pattern.CASE_INSENSITIVE);
+		int category = 0;
 		Matcher m;
 		for(File f: files)
 		{
 			if(f.isFile())
 			{
 				System.out.println(f.getName());
+				if (f.getName().contains("_SRM"))
+				{
+					category = 1;
+				}
+				if (f.getName().contains("_LHR"))
+				{
+					category = 2;
+				}
+				if (f.getName().contains("_SUS"))
+				{
+					category = 3;
+				}
 				BufferedReader bf = new BufferedReader(new FileReader(f));
 				String text = "";//holds one company's profile
 				String temp;
@@ -89,7 +129,7 @@ class FormatKeywords{
 				String name = f.getName().replaceAll(",", "");
 				//if you use profiles by 3 category please uncomment next line
 				//name = name.substring(0, name.lastIndexOf("_"));
-				fk.writeFiles(name, text);
+				fk.writeFiles(name, text, category);
 			}
 		}
 	}
