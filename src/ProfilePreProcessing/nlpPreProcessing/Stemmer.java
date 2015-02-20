@@ -17,7 +17,7 @@ public class Stemmer
 
     public RiWordnet rwordnet;
 
-    public Stemmer() throws FileNotFoundException {
+    public Stemmer(){
 
 	    rwordnet = new RiWordnet();
     }
@@ -29,7 +29,7 @@ public class Stemmer
             //change the path to the location of the stanford POS tagger on your computer
                 //MaxentTagger posTagger = new MaxentTagger("F:/NetBeans Project/stanford-postagger-2013-04-04/models/english-bidirectional-distsim.tagger");
 	        String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
-
+//
 	        JWNL.initialize(new FileInputStream(propsFile));
 
             Stemmer sn = new Stemmer();

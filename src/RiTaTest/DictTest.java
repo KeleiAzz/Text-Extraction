@@ -15,6 +15,7 @@ import java.io.*;
 import java.util.Vector;
 import java.util.Map;
 import java.util.HashMap;
+//import rita.wordnet.RiWordnet;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
 
@@ -35,10 +36,10 @@ public class DictTest {
 		System.out.println(t);
 		t = test.StemWordWithWordNet("packages");
 		System.out.println(t);
-		t = test.StemWordWithWordNet("packages");
+		t = test.StemWordWithWordNet("packaging");
 		System.out.println(t);
-		String s = EnglishSnowballStemmerFactory.getInstance().process("entry");
-		System.out.println(s);
+//		String s = EnglishSnowballStemmerFactory.getInstance().process("entry");
+//		System.out.println(s);
 //		test.Unload();
 	}
 	public DictTest()
@@ -134,7 +135,7 @@ public class DictTest {
 		String[] splittedWords=companyContent.split(",");
 		for(int i =0;i<splittedWords.length;i++)
 		{
-			stemmedCompanyContent=stemmedCompanyContent+ Stem(splittedWords[i])+",";
+			stemmedCompanyContent=stemmedCompanyContent+ StemWordWithWordNet(splittedWords[i])+",";
 //			try
 //			{
 //
