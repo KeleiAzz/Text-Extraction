@@ -51,21 +51,21 @@ class FormatKeywords{
 		{
 			case 1:
 				System.out.println("For SRM");
-				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_SRM_no_spell_check.csv", true));
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_SRM_no_spell_check_snowball.csv", true));
 				csvfile.append(companyName); csvfile.append(',');
 				csvfile.append(text); csvfile.append(',');
 				csvfile.append('\n'); csvfile.close();
 				break;
 			case 2:
 				System.out.println("For LHR");
-				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_LHR_no_spell_check.csv", true));
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_LHR_no_spell_check_snowball.csv", true));
 				csvfile.append(companyName); csvfile.append(',');
 				csvfile.append(text); csvfile.append(',');
 				csvfile.append('\n'); csvfile.close();
 				break;
 			case 3:
 				System.out.println("For SUS");
-				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_SUS_no_spell_check.csv", true));
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_SUS_no_spell_check_snowball.csv", true));
 				csvfile.append(companyName); csvfile.append(',');
 				csvfile.append(text); csvfile.append(',');
 				csvfile.append('\n'); csvfile.close();
@@ -81,7 +81,7 @@ class FormatKeywords{
 	{
 		FormatKeywords fk = new FormatKeywords();
 		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/";
-		String folder = filepath + "e.keyword_category";
+		String folder = filepath + "e.keyword_category2";
 		File[] files = new File(folder).listFiles();
 		Pattern p = Pattern.compile("^[A-Za-z]+$", Pattern.CASE_INSENSITIVE);
 		int category = 0;

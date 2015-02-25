@@ -33,7 +33,7 @@ public class ProfilePreProcessingForCategory
 		String lhrConteng = new String("");
 
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/TextExtraction", "root", "");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ml", "root", "");
 			for(int i=0;i<companyNames.size();i++)
 			{
 				srmConteng="";
@@ -50,10 +50,10 @@ public class ProfilePreProcessingForCategory
 				String processedSUSProfile = preprocessor.preProcessProfile(susConteng);
 				String processedLHRProfile = preprocessor.preProcessProfile(lhrConteng);
 
-				CSVWriter.Write(filepath + "e.keyword_category/"+companyNames.get(i)+"_SRM.txt", processedSRMProfile);
+				CSVWriter.Write(filepath + "e.keyword_category2/"+companyNames.get(i)+"_SRM.txt", processedSRMProfile);
 				//CSVWriter.Write("F://SCRC Research//2013 ML//Data_Extraction//e.keyword_category//"+companyNames.get(i)+"_SPM.txt", processedSPMProfile);
-				CSVWriter.Write(filepath + "e.keyword_category//"+companyNames.get(i)+"_SUS.txt", processedSUSProfile);
-				CSVWriter.Write(filepath + "e.keyword_category//"+companyNames.get(i)+"_LHR.txt", processedLHRProfile);
+				CSVWriter.Write(filepath + "e.keyword_category2/"+companyNames.get(i)+"_SUS.txt", processedSUSProfile);
+				CSVWriter.Write(filepath + "e.keyword_category2/"+companyNames.get(i)+"_LHR.txt", processedLHRProfile);
 
 
 			}
@@ -67,13 +67,13 @@ public class ProfilePreProcessingForCategory
 	public static ArrayList<String> getCompanyNames(String tableName)
 	{
 		ArrayList<String> companyNames = new ArrayList();
-		String sql = "select DISTINCT company_name from "+tableName;
-
+		String sql = "select DISTINCT company_name from "+tableName; //+" LIMIT 113,312";
+//
 		ResultSet rs=null;
 		Connection  conn;
 		try
 		{
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/TextExtraction","root","");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ml","root","");
 			Statement stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
 			while (rs.next())

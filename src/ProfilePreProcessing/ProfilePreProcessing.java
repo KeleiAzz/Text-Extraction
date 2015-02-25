@@ -26,6 +26,9 @@ import ProfilePreProcessing.nlpPreProcessing.WordListChecker;
 import net.didion.jwnl.JWNL;
 import net.didion.jwnl.JWNLException;
 import RiTaTest.DictTest;
+import org.tartarus.snowball.EnglishSnowballStemmerFactory;
+import org.tartarus.snowball.util.StemmerException;
+
 /**
  *
  * @author SCRC
@@ -41,14 +44,14 @@ public class ProfilePreProcessing
 		//checker = new WordListChecker("D:\\wordlist.txt");
 		dicReplacer = new DictionaryItemReplacer();
 		stopWordEliminator = new StopWordEliminator();
-		String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
-
-		try {
-//			String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
-			JWNL.initialize(new FileInputStream(propsFile));
-		} catch (JWNLException e) {
-//			e.printStackTrace();
-		}
+//		String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
+//
+//		try {
+////			String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
+//			JWNL.initialize(new FileInputStream(propsFile));
+//		} catch (JWNLException e) {
+////			e.printStackTrace();
+//		}
 
 		stemmer = new Stemmer();
 		test = new DictTest();
@@ -159,8 +162,13 @@ public class ProfilePreProcessing
 			splittedProfile[i]=stopWordEliminator.deleteStopWords(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.LeaveEngLetter(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.ReplaceComma(splittedProfile[i]);
-			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
+//			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
 //			splittedProfile[i]=test.StemCompanyContent(splittedProfile[i]);
+			try {
+				splittedProfile[i]=EnglishSnowballStemmerFactory.getInstance().process(splittedProfile[i]);
+			} catch (StemmerException e) {
+				e.printStackTrace();
+			}
 			//splittedProfile[i]=checker.checkCompanyContent(splittedProfile[i]);
 		}
 

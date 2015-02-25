@@ -36,9 +36,10 @@ public class DictTest {
 		System.out.println(t);
 		t = test.StemWordWithWordNet("packages");
 		System.out.println(t);
-		t = test.StemWordWithWordNet("packaging");
+		t = test.StemWordWithWordNet("based");
 		System.out.println(t);
-//		String s = EnglishSnowballStemmerFactory.getInstance().process("entry");
+//		EnglishSnowballStemmerFactory s = new EnglishSnowballStemmerFactory();
+//		s.getInstance().process("entry");
 //		System.out.println(s);
 //		test.Unload();
 	}

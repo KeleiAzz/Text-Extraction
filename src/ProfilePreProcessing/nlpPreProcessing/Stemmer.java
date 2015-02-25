@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import processing.core.PApplet;
 import rita.wordnet.RiWordnet;
-import net.didion.jwnl.JWNL;
+//import net.didion.jwnl.JWNL;
 import net.didion.jwnl.JWNLException;
 
 public class Stemmer 
@@ -18,7 +19,10 @@ public class Stemmer
     public RiWordnet rwordnet;
 
     public Stemmer(){
-
+//	    String propsFile = "/usr/local/Cellar/wordnet/3.1";
+//	    String propsFile2 = "/Users/keleigong/Dropbox/Java/Stemmer/src/Stemmer/file_properties.xml";
+//	    PApplet p = new PApplet();
+//	    rwordnet = new RiWordnet(p,propsFile);
 	    rwordnet = new RiWordnet();
     }
     
@@ -28,9 +32,8 @@ public class Stemmer
             //initalizing the part-of-speech-tagger 
             //change the path to the location of the stanford POS tagger on your computer
                 //MaxentTagger posTagger = new MaxentTagger("F:/NetBeans Project/stanford-postagger-2013-04-04/models/english-bidirectional-distsim.tagger");
-	        String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
-//
-	        JWNL.initialize(new FileInputStream(propsFile));
+//	        String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
+//	        JWNL.initialize(new FileInputStream(propsFile));
 
             Stemmer sn = new Stemmer();
             //transfer running to the function to get stem
@@ -56,7 +59,7 @@ public class Stemmer
             stringsToBeStemmed.add("keept"); 
             stringsToBeStemmed.add("kept"); 
             */
-            stringsToBeStemmed.add("and"); 
+            stringsToBeStemmed.add("based");
             stringsToBeStemmed.add("than"); 
             stringsToBeStemmed.add("we"); 
             stringsToBeStemmed.add("packages");
