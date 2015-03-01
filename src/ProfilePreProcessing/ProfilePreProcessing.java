@@ -162,7 +162,7 @@ public class ProfilePreProcessing
 			splittedProfile[i]=stopWordEliminator.deleteStopWords(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.LeaveEngLetter(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.ReplaceComma(splittedProfile[i]);
-//			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
+			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
 //			splittedProfile[i]=test.StemCompanyContent(splittedProfile[i]);
 			try {
 				splittedProfile[i]=EnglishSnowballStemmerFactory.getInstance().process(splittedProfile[i]);
