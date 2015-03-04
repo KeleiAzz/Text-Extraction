@@ -31,7 +31,7 @@ public class WordListChecker
     
     public static void main(String[] args)
     {
-        WordListChecker checker = new WordListChecker("D:\\wordlist.txt");
+        WordListChecker checker = new WordListChecker("/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/wordlist.txt");
         System.out.println(checker.check("hello"));
         System.out.println(checker.check("world"));
     }

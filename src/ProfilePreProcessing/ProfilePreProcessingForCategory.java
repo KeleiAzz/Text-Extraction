@@ -26,7 +26,7 @@ public class ProfilePreProcessingForCategory
 	public static void main(String[] args) throws FileNotFoundException {
 		ProfilePreProcessing preprocessor = new ProfilePreProcessing();
 		companyNames = getCompanyNames("link_content_2014");
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/second run/";
 		String srmConteng = new String("");
 		//String spmConteng = new String("");
 		String susConteng = new String("");
@@ -36,11 +36,6 @@ public class ProfilePreProcessingForCategory
 			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ml", "root", "");
 			for(int i=0;i<companyNames.size();i++)
 			{
-				srmConteng="";
-				//spmConteng="";
-				susConteng="";
-				lhrConteng="";
-
 				srmConteng = getCompanyProfile(companyNames.get(i),"SRM",conn);
 				//spmConteng = getCompanyProfile(companyNames.get(i),"Spend Management");
 				susConteng = getCompanyProfile(companyNames.get(i),"SUS",conn);

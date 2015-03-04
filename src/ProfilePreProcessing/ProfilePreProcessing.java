@@ -6,7 +6,7 @@ package ProfilePreProcessing;
 import ProfilePreProcessing.DBInsertor.DBInsertor;
 import ProfilePreProcessing.DBInsertor.PreProcessedContent;
 import HTMLDownloader.CSVWriter;
-
+import SynonymGrouping.SynonymCompare;
 import java.io.*;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -35,13 +35,14 @@ import org.tartarus.snowball.util.StemmerException;
  */
 public class ProfilePreProcessing
 {
-	//private WordListChecker checker;
+	private WordListChecker checker;
 	private DictionaryItemReplacer dicReplacer;
 	private StopWordEliminator stopWordEliminator;
 	private Stemmer stemmer;
 	private DictTest test;
+	private SynonymCompare sc;
 	public ProfilePreProcessing() throws FileNotFoundException {
-		//checker = new WordListChecker("D:\\wordlist.txt");
+		checker = new WordListChecker("/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/wordlist.txt");
 		dicReplacer = new DictionaryItemReplacer();
 		stopWordEliminator = new StopWordEliminator();
 //		String propsFile = "/Users/keleigong/Dropbox/Java/SCRC_Text_Extraction/src/ProfilePreProcessing/file_properties.xml";
@@ -163,13 +164,14 @@ public class ProfilePreProcessing
 			splittedProfile[i]=SpecialCharReplacer.LeaveEngLetter(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.ReplaceComma(splittedProfile[i]);
 			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
+			splittedProfile[i]=sc.SynonymCompare(splittedProfile[i]);
 //			splittedProfile[i]=test.StemCompanyContent(splittedProfile[i]);
 			try {
 				splittedProfile[i]=EnglishSnowballStemmerFactory.getInstance().process(splittedProfile[i]);
 			} catch (StemmerException e) {
 				e.printStackTrace();
 			}
-			//splittedProfile[i]=checker.checkCompanyContent(splittedProfile[i]);
+			splittedProfile[i]=checker.checkCompanyContent(splittedProfile[i]); //spell checking
 		}
 
 		String combinedProfile = new String("");

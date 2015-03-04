@@ -13,7 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class SynonymCompare {
 
-	private String fileToBeRead = "F:\\NetBeans Project\\synonyms.xlsx";
+	private String fileToBeRead = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/second run/synonyms.xlsx";
 	public String SynonymCompare(String result)
 	{
 		String ls = "";
