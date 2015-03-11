@@ -21,7 +21,7 @@ public class DownloadContentInsertor {
     {
         //read folder for all the downloaded files for all companies
         ArrayList<String> companyNames = new ArrayList();
-	    String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/second run/";
+	    String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
         try 
         {
             companyNames = FileFolderIterator.readCompanyNames(filepath + "c.company_text/company_csv/");

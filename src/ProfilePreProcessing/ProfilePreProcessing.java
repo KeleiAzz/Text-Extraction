@@ -164,13 +164,13 @@ public class ProfilePreProcessing
 			splittedProfile[i]=SpecialCharReplacer.LeaveEngLetter(splittedProfile[i]);
 			splittedProfile[i]=SpecialCharReplacer.ReplaceComma(splittedProfile[i]);
 			splittedProfile[i]=stemmer.StemCompanyContent(splittedProfile[i]);
-			splittedProfile[i]=sc.SynonymCompare(splittedProfile[i]);
+//			splittedProfile[i]=sc.SynonymCompare(splittedProfile[i]);
 //			splittedProfile[i]=test.StemCompanyContent(splittedProfile[i]);
-			try {
-				splittedProfile[i]=EnglishSnowballStemmerFactory.getInstance().process(splittedProfile[i]);
-			} catch (StemmerException e) {
-				e.printStackTrace();
-			}
+//			try {
+//				splittedProfile[i]=EnglishSnowballStemmerFactory.getInstance().process(splittedProfile[i]);
+//			} catch (StemmerException e) {
+//				e.printStackTrace();
+//			}
 			splittedProfile[i]=checker.checkCompanyContent(splittedProfile[i]); //spell checking
 		}
 

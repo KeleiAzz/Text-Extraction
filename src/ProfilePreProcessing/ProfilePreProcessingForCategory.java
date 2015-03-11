@@ -25,8 +25,8 @@ public class ProfilePreProcessingForCategory
 	private static ArrayList<String> companyNames = new ArrayList();
 	public static void main(String[] args) throws FileNotFoundException {
 		ProfilePreProcessing preprocessor = new ProfilePreProcessing();
-		companyNames = getCompanyNames("link_content_2014");
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/second run/";
+		companyNames = getCompanyNames("link_content_2014_KWE");
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
 		String srmConteng = new String("");
 		//String spmConteng = new String("");
 		String susConteng = new String("");
@@ -45,10 +45,10 @@ public class ProfilePreProcessingForCategory
 				String processedSUSProfile = preprocessor.preProcessProfile(susConteng);
 				String processedLHRProfile = preprocessor.preProcessProfile(lhrConteng);
 
-				CSVWriter.Write(filepath + "e.keyword_category2/"+companyNames.get(i)+"_SRM.txt", processedSRMProfile);
+				CSVWriter.Write(filepath + "e.keyword_category/"+companyNames.get(i)+"_SRM.txt", processedSRMProfile);
 				//CSVWriter.Write("F://SCRC Research//2013 ML//Data_Extraction//e.keyword_category//"+companyNames.get(i)+"_SPM.txt", processedSPMProfile);
-				CSVWriter.Write(filepath + "e.keyword_category2/"+companyNames.get(i)+"_SUS.txt", processedSUSProfile);
-				CSVWriter.Write(filepath + "e.keyword_category2/"+companyNames.get(i)+"_LHR.txt", processedLHRProfile);
+				CSVWriter.Write(filepath + "e.keyword_category/"+companyNames.get(i)+"_SUS.txt", processedSUSProfile);
+				CSVWriter.Write(filepath + "e.keyword_category/"+companyNames.get(i)+"_LHR.txt", processedLHRProfile);
 
 
 			}
@@ -93,7 +93,7 @@ public class ProfilePreProcessingForCategory
 	private static String getCompanyProfile(String companyName,String category,Connection conn)
 	{
 		String companyProfile = new String("");
-		String sql = "select content from link_content_2014,link_category_2014 WHERE link_content_2014.company_name=link_category_2014.company_name and link_content_2014.link=link_category_2014.link and link_content_2014.company_name='"+companyName+"' and link_category_2014.category LIKE \"%"+category+"%\"";
+		String sql = "select content from link_content_2014_KWE,link_category_2014 WHERE link_content_2014_KWE.company_name=link_category_2014.company_name and link_content_2014_KWE.link=link_category_2014.link and link_content_2014_KWE.company_name='"+companyName+"' and link_category_2014.category LIKE \"%"+category+"%\"";
 		System.out.println(sql);
 		ResultSet rs=null;
 //		Connection  conn;
