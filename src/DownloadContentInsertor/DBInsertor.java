@@ -15,7 +15,7 @@ public class DBInsertor
            String url = "jdbc:mysql://127.0.0.1:3306/ml";
 //	        String url = "jdbc:mysql://152.1.153.12:3306/ml";
 
-			String table = "link_content_2014_KWE";
+			String table = "link_content_2014_es";
            // MySQL配置时的用户名
            String user = "root"; 
 

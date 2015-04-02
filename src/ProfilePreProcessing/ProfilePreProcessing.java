@@ -71,10 +71,10 @@ public class ProfilePreProcessing
 
 		for(int i=0;i<companyNames.size();i++)
 		{
-			String companyProfile = getCompanyProfile(companyNames.get(i));
-			String processedProfile = preProcessProfile(companyProfile);
-			DBProfileInsert(companyNames.get(i),processedProfile);
-			CSVWriter.Write("d:\\processed_profiles\\"+companyNames.get(i)+".txt", processedProfile);
+//			String companyProfile = getCompanyProfile(companyNames.get(i));
+//			String processedProfile = preProcessProfile(companyProfile);
+//			DBProfileInsert(companyNames.get(i),processedProfile);
+//			CSVWriter.Write("d:\\processed_profiles\\"+companyNames.get(i)+".txt", processedProfile);
 		}
 
 	}
@@ -105,46 +105,46 @@ public class ProfilePreProcessing
 	}
 
 	//querry DB and get all the profiles for this company
-	private static String getCompanyProfile(String companyName)
-	{
-		String companyProfile = new String("");
-		String sql = "select content from link_content_2014 where company='"+companyName+"'";
-		ResultSet rs=null;
-		Connection  conn;
-		try
-		{
-			conn = java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/TextExtraction","root","");
-			Statement stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			while (rs.next())
-			{
-				Blob b = rs.getBlob("content");
-
-				//int size = (int) b.length();
-				//System.out.println("size:"+size);
-				InputStream in = b.getBinaryStream();
-
-				BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-				StringBuffer buffer = new StringBuffer();
-				String line = "";
-				while ((line = reader.readLine()) != null)
-				{
-					buffer.append(line+"\n");
-				}
-				companyProfile = companyProfile+buffer.toString();
-
-				in.close();
-			}
-			conn.close();
-		}
-		catch (SQLException ex)
-		{
-			Logger.getLogger(BlobReader.class.getName()).log(Level.SEVERE, null, ex);
-		} catch (IOException ex) {
-			Logger.getLogger(ProfilePreProcessing.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return companyProfile;
-	}
+//	private static String getCompanyProfile(String companyName)
+//	{
+//		String companyProfile = new String("");
+//		String sql = "select content from link_content_2014 where company='"+companyName+"'";
+//		ResultSet rs=null;
+//		Connection  conn;
+//		try
+//		{
+//			conn = java.sql.DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/TextExtraction","root","");
+//			Statement stmt=conn.createStatement();
+//			rs=stmt.executeQuery(sql);
+//			while (rs.next())
+//			{
+//				Blob b = rs.getBlob("content");
+//
+//				//int size = (int) b.length();
+//				//System.out.println("size:"+size);
+//				InputStream in = b.getBinaryStream();
+//
+//				BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+//				StringBuffer buffer = new StringBuffer();
+//				String line = "";
+//				while ((line = reader.readLine()) != null)
+//				{
+//					buffer.append(line+"\n");
+//				}
+//				companyProfile = companyProfile+buffer.toString();
+//
+//				in.close();
+//			}
+//			conn.close();
+//		}
+//		catch (SQLException ex)
+//		{
+//			Logger.getLogger(BlobReader.class.getName()).log(Level.SEVERE, null, ex);
+//		} catch (IOException ex) {
+//			Logger.getLogger(ProfilePreProcessing.class.getName()).log(Level.SEVERE, null, ex);
+//		}
+//		return companyProfile;
+//	}
 
 	//NLP preprocess company Profiles
 	public  String preProcessProfile(String companyProfile)

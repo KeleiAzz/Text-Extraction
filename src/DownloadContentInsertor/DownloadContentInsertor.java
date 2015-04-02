@@ -24,7 +24,8 @@ public class DownloadContentInsertor {
 	    String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
         try 
         {
-            companyNames = FileFolderIterator.readCompanyNames(filepath + "c.company_text/company_csv/");
+//            companyNames = FileFolderIterator.readCompanyNames(filepath + "c.company_text/company_csv/");
+	        companyNames = FileFolderIterator.readCompanyNames(filepath + "d.sentences/ES/");
             System.out.println(companyNames.size());
         } 
         catch (FileNotFoundException ex) 
@@ -39,7 +40,7 @@ public class DownloadContentInsertor {
         for(int j=0;j<companyNames.size();j++)//每次循环读一个company的所有url
         {	
         	System.out.println(companyNames.get(j));
-            String path = filepath + "c.company_text/company_csv/"+companyNames.get(j)+".txt";
+            String path = filepath + "d.sentences/ES/"+companyNames.get(j)+".txt";
             
             RecordFileLoader.Read(path,companyNames.get(j));
         }

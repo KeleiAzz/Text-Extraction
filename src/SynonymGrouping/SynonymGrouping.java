@@ -22,7 +22,7 @@ public class SynonymGrouping {
 		sg.extractKeywords();
 	}
 	public void writeFiles(String companyName, String text, int category) throws IOException{
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/second run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
 		PrintWriter csvfile;
 //		if (cagtegory.equals("SRM")){
 //			csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_SRM_no_spell_check.csv", true));
@@ -33,22 +33,43 @@ public class SynonymGrouping {
 		switch (category)
 		{
 			case 1:
+				System.out.println("For SS");
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_SS_spell_check_synom.csv", true));
+				csvfile.append(companyName); csvfile.append(',');
+				csvfile.append(text); csvfile.append(',');
+				csvfile.append('\n'); csvfile.close();
+				break;
+			case 2:
+				System.out.println("For SM");
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_SM_spell_check_synom.csv", true));
+				csvfile.append(companyName); csvfile.append(',');
+				csvfile.append(text); csvfile.append(',');
+				csvfile.append('\n'); csvfile.close();
+				break;
+			case 3:
+				System.out.println("For CM");
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_CM_spell_check_synom.csv", true));
+				csvfile.append(companyName); csvfile.append(',');
+				csvfile.append(text); csvfile.append(',');
+				csvfile.append('\n'); csvfile.close();
+				break;
+			case 4:
 				System.out.println("For SRM");
 				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_SRM_spell_check_synom.csv", true));
 				csvfile.append(companyName); csvfile.append(',');
 				csvfile.append(text); csvfile.append(',');
 				csvfile.append('\n'); csvfile.close();
 				break;
-			case 2:
+			case 5:
 				System.out.println("For LHR");
 				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_LHR_spell_check_synom.csv", true));
 				csvfile.append(companyName); csvfile.append(',');
 				csvfile.append(text); csvfile.append(',');
 				csvfile.append('\n'); csvfile.close();
 				break;
-			case 3:
-				System.out.println("For SUS");
-				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_SUS_spell_check_synom.csv", true));
+			case 6:
+				System.out.println("For ES");
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_ES_spell_check_synom.csv", true));
 				csvfile.append(companyName); csvfile.append(',');
 				csvfile.append(text); csvfile.append(',');
 				csvfile.append('\n'); csvfile.close();
@@ -65,8 +86,8 @@ public class SynonymGrouping {
 //		SynonymCompare sc = new SynonymCompare();
 		HashMap<String,String> sc = getSynonymList();
 		System.out.println(sc);
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/second run/";
-		String folder = filepath + "e.keyword_category2";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
+		String folder = filepath + "e.keyword_category";
 		File[] files = new File(folder).listFiles();
 		Pattern p = Pattern.compile("^[A-Za-z]+$", Pattern.CASE_INSENSITIVE);
 		int category = 0;
@@ -74,14 +95,23 @@ public class SynonymGrouping {
 		for (File f : files) {
 			if (f.isFile()) {
 //				System.out.println(f.getName());
-				if (f.getName().contains("_SRM")) {
+				if (f.getName().contains("_SS")) {
 					category = 1;
 				}
-				if (f.getName().contains("_LHR")) {
+				if (f.getName().contains("_SM")) {
 					category = 2;
 				}
-				if (f.getName().contains("_SUS")) {
+				if (f.getName().contains("_CM")) {
 					category = 3;
+				}
+				if (f.getName().contains("_SRM")) {
+					category = 4;
+				}
+				if (f.getName().contains("_LHR")) {
+					category = 5;
+				}
+				if (f.getName().contains("_ES")) {
+					category = 6;
 				}
 				System.out.println(f.getName() + " " + category);
 				BufferedReader bf = new BufferedReader(new FileReader(f));
@@ -128,7 +158,7 @@ public class SynonymGrouping {
 	}
 
 	public HashMap<String,String> getSynonymList(){
-		String fileToBeRead = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/second run/synonyms.xlsx";
+		String fileToBeRead = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/synonyms.xlsx";
 		HashMap<String,String> res = new HashMap<String, String>();
 		try
 		{
