@@ -3,4 +3,6 @@ src/RiTaTest/WordNet-3.0
 src/RiTaTest/WordNet-2.0
 out
 *.class
-
+lib/WordNet-2.0
+lib/WordNet-2.1
+lib/WordNet-3.0
