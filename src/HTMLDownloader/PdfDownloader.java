@@ -11,6 +11,10 @@ import org.apache.commons.io.FileUtils;
 
 public class PdfDownloader
 {
+	public static void main(String[] args){
+		downloadFromUrl("http://www.coca-colacompany.com/our-company/spg-implementation-guide-english",
+				"/Users/keleigong/Google Drive/","hahahahah.pdf");
+	}
 	public static boolean downloadFromUrl(String url,String dir,String fileName)
 	{
 		try {

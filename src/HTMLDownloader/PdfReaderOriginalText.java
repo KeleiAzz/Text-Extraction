@@ -12,6 +12,7 @@ import org.apache.pdfbox.pdfparser.PDFParser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.util.PDFTextStripper;
 
+
 public class PdfReaderOriginalText
 {
 	private static String pdfPath;
@@ -23,7 +24,7 @@ public class PdfReaderOriginalText
 
 
 	/**
-	 * @param 读取PDF文件
+	 * @param
 	 */
 //	public static void main(String[] args) {
 //		PdfReaderOriginalText pdf = new PdfReaderOriginalText();
@@ -40,17 +41,18 @@ public class PdfReaderOriginalText
 		String context="";
 		try
 		{
-			infile = new FileInputStream(pdfPath);// 创建一个文件输入流
+//			infile = new FileInputStream(pdfPath);// 创建一个文件输入流
 			// 新建一个PDF解析器对象
-			PDFParser parser = new PDFParser(infile);
+//			PDFParser parser = new PDFParser(infile);
 			// 对PDF文件进行解析
-			parser.parse();
+//			parser.parse();
 			// 获取解析后得到的PDF文档对象
-			PDDocument pdfdocument = parser.getPDDocument();
+//			PDDocument pdfdocument = parser.getPDDocument();
 			// 新建一个PDF文本剥离器
-			PDFTextStripper stripper = new PDFTextStripper();
+//			PDFTextStripper stripper = new PDFTextStripper();
 			// 从PDF文档对象中剥离文本
-			context = stripper.getText(pdfdocument);
+//			context = stripper.getText(pdfdocument);
+			context = pdfconverter.convertPDFToText(pdfPath,"");
 			//System.out.println("PDF file" + file.getAbsolutePath() + "has following content");
 			//System.out.println(context);
 			//comment these line because we need original text
