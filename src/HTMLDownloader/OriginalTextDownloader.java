@@ -34,8 +34,7 @@ public class OriginalTextDownloader
 	public static int pdfCounter = 0;
 	public static ArrayList<DirItem> phraseDictionary;
 
-	public static void main(String args[])
-	{
+	public static void main(String args[]) throws IOException {
 		//Phrase Dictionary List
 		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/fourth run/";
 		PhraseReader phraseReader = new PhraseReader(filepath + "phrase.xlsx");
@@ -86,12 +85,14 @@ public class OriginalTextDownloader
 
 			for(int i = 0; i<=urlArrayList.size()-1;i++)
 			{
-				if(!urlArrayList.get(i).contains(".pdf")&&!urlArrayList.get(i).contains(".File?item"))//webpage url
+				String trueURL = RedirectDetector.getTrueURL(urlArrayList.get(i));
+				if(!trueURL.contains(".pdf")&&!trueURL.contains(".File?item"))//webpage url
 				{
 					htmlCounter++;
-					System.out.println(urlArrayList.get(i));
+					System.out.println(trueURL);
 					//System.out.println(MainTextExtractor.parse(getHTML(urlArrayList.get(i), "utf-8")));
-					String result = MainTextExtractorOriginalText.parse(HtmlDownloader.getHTML(urlArrayList.get(i).replace("http//", "http://"), "utf-8"));
+//					String result = MainTextExtractorOriginalText.parse(HtmlDownloader.getHTML(urlArrayList.get(i).replace("http//", "http://"), "utf-8"));
+					String result = MainTextExtractorOriginalText.parse(HtmlDownloader.getHTML(trueURL, "utf-8"));
 					if(result.length()==0)
 					{
 						deadLink.add(urlArrayList.get(i));
@@ -106,8 +107,8 @@ public class OriginalTextDownloader
 				else//pdf URL
 				{
 					pdfCounter++;
-					System.out.println(urlArrayList.get(i));
-					boolean res = PdfDownloader.downloadFromUrl(urlArrayList.get(i).replace("http//", "http://"),filepath + "pdfdownloader/"+companyNames.get(j)+"/",companyNames.get(j)+pdfCounter+".pdf");
+					System.out.println(trueURL);
+					boolean res = PdfDownloader.downloadFromUrl(trueURL,filepath + "pdfdownloader/"+companyNames.get(j)+"/",companyNames.get(j)+pdfCounter+".pdf");
 					if(res==false)//pdf文件有问题或不能下载
 					{
 						deadPdfCounter++;

@@ -8,11 +8,11 @@ import java.io.File;
 import java.net.URL;
 
 import org.apache.commons.io.FileUtils;
-
+import org.apache.poi.hwpf.extractor.WordExtractor;
 public class PdfDownloader
 {
 	public static void main(String[] args){
-		downloadFromUrl("http://www.coca-colacompany.com/our-company/spg-implementation-guide-english",
+		downloadFromUrl("http://www.apriso.com/library/white_papers/Delivering%20on%20the%20Promise%20of%20Global%20Growth%20-%20Cummins%20Inc.pdf",
 				"/Users/keleigong/Google Drive/","hahahahah.pdf");
 	}
 	public static boolean downloadFromUrl(String url,String dir,String fileName)
