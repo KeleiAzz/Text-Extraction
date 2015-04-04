@@ -46,7 +46,81 @@ public class HtmlDownloader
 			}
 			connection.disconnect();
 		}
+		catch (SSLHandshakeException e)
+		{
+			TrustManager[] trustAllCerts = new TrustManager[] {
+					new X509TrustManager() {
+						public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+							return null;
+						}
 
+						public void checkClientTrusted(X509Certificate[] certs, String authType) {  }
+
+						public void checkServerTrusted(X509Certificate[] certs, String authType) {  }
+
+					}
+			};
+
+			SSLContext sc = null;
+			try {
+				sc = SSLContext.getInstance("SSL");
+			} catch (NoSuchAlgorithmException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				sc.init(null, trustAllCerts, new java.security.SecureRandom());
+			} catch (KeyManagementException e1) {
+				e1.printStackTrace();
+			}
+			HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+
+			// Create all-trusting host name verifier
+			HostnameVerifier allHostsValid = new HostnameVerifier() {
+				public boolean verify(String hostname, SSLSession session) {
+					return true;
+				}
+			};
+			// Install the all-trusting host verifier
+			HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid);
+    /*
+     * end of the fix
+     */
+			StringBuilder pageHTML2 = new StringBuilder();
+			URL url = null;
+			try {
+				url = new URL(pageURL);
+			} catch (MalformedURLException e1) {
+				e1.printStackTrace();
+			}
+			URLConnection con = null;
+			try {
+				con = url.openConnection();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				Reader reader = new InputStreamReader(con.getInputStream());
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			BufferedReader br = null;
+			try {
+				br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			String line = null;
+			try {
+				while ((line = br.readLine()) != null)
+				{
+					pageHTML2.append(line);
+					pageHTML2.append("\r\n");
+				}
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			System.out.println(MainTextExtractorOriginalText.parse(pageHTML2.toString()));
+		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
