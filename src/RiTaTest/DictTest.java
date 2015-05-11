@@ -7,8 +7,8 @@ package RiTaTest;
 import net.didion.jwnl.*;
 import net.didion.jwnl.data.*;
 import net.didion.jwnl.dictionary.*;
-//import org.tartarus.snowball.EnglishSnowballStemmerFactory;
 import org.tartarus.snowball.EnglishSnowballStemmerFactory;
+//import org.tartarus.snowball.EnglishSnowballStemmerFactory;
 import org.tartarus.snowball.util.StemmerException;
 
 import java.io.*;

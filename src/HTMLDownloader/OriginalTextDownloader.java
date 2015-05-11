@@ -86,7 +86,7 @@ public class OriginalTextDownloader
 			for(int i = 0; i<=urlArrayList.size()-1;i++)
 			{
 				String trueURL = RedirectDetector.getTrueURL(urlArrayList.get(i));
-				if(!trueURL.contains(".pdf")&&!trueURL.contains(".File?item"))//webpage url
+				if((!trueURL.contains("File")||!trueURL.contains(".aspx"))&&!trueURL.contains(".ashx")&&!trueURL.contains(".pdf")&&!trueURL.contains(".File?item"))//webpage url
 				{
 					htmlCounter++;
 					System.out.println(trueURL);

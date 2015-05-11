@@ -25,8 +25,8 @@ public class ProfilePreProcessingForCategory
 	private static ArrayList<String> companyNames = new ArrayList();
 	public static void main(String[] args) throws FileNotFoundException {
 		ProfilePreProcessing preprocessor = new ProfilePreProcessing();
-		companyNames = getCompanyNames("link_content_2014_KWE");
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
+		companyNames = getCompanyNames("auto_test_link_content_SM");
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/fourth run/";
 		String srmConteng = new String("");
 		//String spmConteng = new String("");
 		String susConteng = new String("");

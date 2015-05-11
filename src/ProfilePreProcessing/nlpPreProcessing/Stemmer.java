@@ -66,7 +66,7 @@ public class Stemmer
             stringsToBeStemmed.add("of"); 
             stringsToBeStemmed.add("our"); 
             stringsToBeStemmed.add("without"); 
-            stringsToBeStemmed.add("for"); 
+            stringsToBeStemmed.add("unreliable");
             stringsToBeStemmed.add("studied");
             stringsToBeStemmed.add("acquires");
             for(int i = 0; i< stringsToBeStemmed.size(); i++)

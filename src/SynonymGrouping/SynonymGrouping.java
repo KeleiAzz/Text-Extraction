@@ -22,7 +22,7 @@ public class SynonymGrouping {
 		sg.extractKeywords();
 	}
 	public void writeFiles(String companyName, String text, int category) throws IOException{
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/fifth run/";
 		PrintWriter csvfile;
 //		if (cagtegory.equals("SRM")){
 //			csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_SRM_no_spell_check.csv", true));
@@ -86,7 +86,7 @@ public class SynonymGrouping {
 //		SynonymCompare sc = new SynonymCompare();
 		HashMap<String,String> sc = getSynonymList();
 		System.out.println(sc);
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/fifth run/";
 		String folder = filepath + "e.keyword_category";
 		File[] files = new File(folder).listFiles();
 		Pattern p = Pattern.compile("^[A-Za-z]+$", Pattern.CASE_INSENSITIVE);

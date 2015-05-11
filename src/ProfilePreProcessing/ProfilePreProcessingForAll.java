@@ -25,13 +25,13 @@ public class ProfilePreProcessingForAll
 	private static ArrayList<String> companyNames = new ArrayList();
 	public static void main(String[] args) throws FileNotFoundException {
 		ProfilePreProcessing preprocessor = new ProfilePreProcessing();
-		String tablename = "link_content_2014_es";
+		String tablename = "auto_test_link_content_ES";
 		companyNames = getCompanyNames(tablename);
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/fifth run/";
 		String srmConteng = new String("");
 		//String spmConteng = new String("");
-		String susConteng = new String("");
-		String lhrConteng = new String("");
+//		String susConteng = new String("");
+//		String lhrConteng = new String("");
 
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ml", "root", "");
@@ -44,7 +44,7 @@ public class ProfilePreProcessingForAll
 				String processedSRMProfile = preprocessor.preProcessProfile(srmConteng);
 				//String processedSPMProfile = preprocessor.preProcessProfile(spmConteng);
 //				String processedSUSProfile = preprocessor.preProcessProfile(susConteng);
-//				String processedLHRProfile = preprocessor.preProcessProfile(lhrConteng);
+//				String processedLHRProfile = preprocessor.preProcessProfratings = as.matrix(ratings)ile(lhrConteng);
 
 				CSVWriter.Write(filepath + "e.keyword_category/"+companyNames.get(i)+"_ES.txt", processedSRMProfile);
 				//CSVWriter.Write("F://SCRC Research//2013 ML//Data_Extraction//e.keyword_category//"+companyNames.get(i)+"_SPM.txt", processedSPMProfile);
@@ -95,7 +95,8 @@ public class ProfilePreProcessingForAll
 	{
 		String companyProfile = new String("");
 //		String sql = "select content from link_content_2014_KWE,link_category_2014 WHERE link_content_2014_KWE.company_name=link_category_2014.company_name and link_content_2014_KWE.link=link_category_2014.link and link_content_2014_KWE.company_name='"+companyName+"' and link_category_2014.category LIKE \"%"+category+"%\"";
-		String sql = "select content from " + tablename + " where company_name= '" + companyName + "'";
+		String sql = "select ct.content from " + tablename + " ct,auto_test_link_category url where ct.company_name= '" + companyName + "' and " +
+				" ct.link=url.link and url.frequency > 2";
 		System.out.println(sql);
 		ResultSet rs=null;
 //		Connection  conn;

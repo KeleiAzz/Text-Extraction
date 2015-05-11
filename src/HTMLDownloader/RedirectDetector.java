@@ -22,22 +22,34 @@ public class RedirectDetector {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println( "orignal url: " + con.getURL() );
+//		System.out.println( "orignal url: " + con.getURL() );
+		String orignalULR = url;
 		try {
+//			System.out.println("1");
 			con.connect();
+			orignalULR = con.getURL().toString();
+//			System.out.println("2");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println( "connected url: " + con.getURL() );
+
+//		System.out.println( "connected url: " + con.getURL() );
 		InputStream is = null;
+		String TrueURL = orignalULR;
 		try {
+//			System.out.println("3");
 			is = con.getInputStream();
+			TrueURL = con.getURL().toString();
+//			System.out.println("4");
 		} catch (IOException e) {
 			e.printStackTrace();
 			return url;
 		}
-		String TrueURL = con.getURL().toString();
-		System.out.println( "redirected url: " + TrueURL );
+
+		if (!orignalULR.equals(TrueURL)){
+			System.out.println("Redirected");
+		}
+//		System.out.println( "redirected url: " + TrueURL );
 		try {
 			is.close();
 		} catch (IOException e) {
