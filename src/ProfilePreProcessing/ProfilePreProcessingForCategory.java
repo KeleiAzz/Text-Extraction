@@ -25,16 +25,16 @@ public class ProfilePreProcessingForCategory
 	private static ArrayList<String> companyNames = new ArrayList();
 	public static void main(String[] args) throws FileNotFoundException {
 		ProfilePreProcessing preprocessor = new ProfilePreProcessing();
-		companyNames = getCompanyNames("auto_test_link_content_SM");
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/fourth run/";
+		companyNames = getCompanyNames("manual_link_content_2014");
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/sixth run/";
 		String srmConteng = new String("");
 		//String spmConteng = new String("");
 		String susConteng = new String("");
 		String lhrConteng = new String("");
 
 		try {
-			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ml", "root", "");
-			for(int i=0;i<companyNames.size();i++)
+			Connection conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ml", "root", "1423");
+			for(int i=145;i<companyNames.size();i++)
 			{
 				srmConteng = getCompanyProfile(companyNames.get(i),"SRM",conn);
 				//spmConteng = getCompanyProfile(companyNames.get(i),"Spend Management");
@@ -68,7 +68,7 @@ public class ProfilePreProcessingForCategory
 		Connection  conn;
 		try
 		{
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ml","root","");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ml","root","1423");
 			Statement stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
 			while (rs.next())
@@ -93,7 +93,7 @@ public class ProfilePreProcessingForCategory
 	private static String getCompanyProfile(String companyName,String category,Connection conn)
 	{
 		String companyProfile = new String("");
-		String sql = "select content from link_content_2014_KWE,link_category_2014 WHERE link_content_2014_KWE.company_name=link_category_2014.company_name and link_content_2014_KWE.link=link_category_2014.link and link_content_2014_KWE.company_name='"+companyName+"' and link_category_2014.category LIKE \"%"+category+"%\"";
+		String sql = "select content from manual_link_content_2014,link_category_2014 WHERE manual_link_content_2014.company_name=link_category_2014.company_name and manual_link_content_2014.link=link_category_2014.link and manual_link_content_2014.company_name='"+companyName+"' and link_category_2014.category LIKE \"%"+category+"%\"";
 		System.out.println(sql);
 		ResultSet rs=null;
 //		Connection  conn;

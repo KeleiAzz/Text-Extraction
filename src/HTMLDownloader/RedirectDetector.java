@@ -31,6 +31,8 @@ public class RedirectDetector {
 //			System.out.println("2");
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 
 //		System.out.println( "connected url: " + con.getURL() );
@@ -44,6 +46,8 @@ public class RedirectDetector {
 		} catch (IOException e) {
 			e.printStackTrace();
 			return url;
+		} catch (NullPointerException e) {
+			e.printStackTrace();
 		}
 
 		if (!orignalULR.equals(TrueURL)){
@@ -53,6 +57,8 @@ public class RedirectDetector {
 		try {
 			is.close();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 		return TrueURL;

@@ -116,7 +116,7 @@ public class HtmlDownloader
 					pageHTML2.append(line);
 					pageHTML2.append("\r\n");
 				}
-			} catch (IOException e1) {
+			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 			System.out.println(MainTextExtractorOriginalText.parse(pageHTML2.toString()));

@@ -15,12 +15,12 @@ public class DBInsertor
            String url = "jdbc:mysql://127.0.0.1:3306/ml";
 //	        String url = "jdbc:mysql://152.1.153.12:3306/ml";
 
-			String table = "auto_test_link_content_SS";
+			String table = "manual_link_content_2014";
            // MySQL配置时的用户名
            String user = "root"; 
 
            // MySQL配置时的密码
-           String password = "";
+           String password = "1423";
 
            try 
            { 

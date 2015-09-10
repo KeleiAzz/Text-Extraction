@@ -39,7 +39,7 @@ class FormatKeywords{
 	}
 
 	public void writeFiles(String companyName, String text, int category) throws IOException{
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/sixth run/";
 		PrintWriter csvfile;
 //		if (cagtegory.equals("SRM")){
 //			csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_SRM_no_spell_check.csv", true));
@@ -80,7 +80,7 @@ class FormatKeywords{
 	public void extractKeywords() throws IOException
 	{
 		FormatKeywords fk = new FormatKeywords();
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/third run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/sixth run/";
 		String folder = filepath + "e.keyword_category";
 		File[] files = new File(folder).listFiles();
 		Pattern p = Pattern.compile("^[A-Za-z]+$", Pattern.CASE_INSENSITIVE);

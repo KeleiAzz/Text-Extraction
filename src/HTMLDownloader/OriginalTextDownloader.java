@@ -36,7 +36,7 @@ public class OriginalTextDownloader
 
 	public static void main(String args[]) throws IOException {
 		//Phrase Dictionary List
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/fourth run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/sixth run/";
 		PhraseReader phraseReader = new PhraseReader(filepath + "phrase.xlsx");
 		phraseDictionary = phraseReader.ReadPhraseExcel();
 		System.out.println("there r "+phraseDictionary.size()+" phrase dictionary items");
