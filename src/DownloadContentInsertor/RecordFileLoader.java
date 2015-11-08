@@ -29,31 +29,63 @@ public class RecordFileLoader
             // 读取直到最后一行 
         String resultLine = ""; 
             String line="";
-            while ((line = br.readLine()) != null) 
-            { 
-                resultLine+=line+"\n";
-            } 
-            br.close();
-            String[] splitedString = resultLine.split("==========");
-            for(int i =0;i<splitedString.length;i++)
-            {   
-                //System.out.println("splitted:"+splitedString[i]);
-                if(splitedString[i].startsWith("\nhttp"))
-                {
-                    splitedString[i] = splitedString[i].substring(1,splitedString[i].length());
-                    int indexOfEnter = splitedString[i].indexOf("\n");
-                    String http = splitedString[i].substring(0, indexOfEnter);
-                    String restOfContent = splitedString[i].substring(indexOfEnter+1,splitedString[i].length());
-                    //System.out.println(http+restOfContent);
-                    RecordContent newRecore = new RecordContent(companyName,http,restOfContent);
-                    //System.out.println("New object created for company:"+companyName+"\t"+http);
-                    DBInsertor.InsertRecord(newRecore);
+            int start_flag = 0;
+            int link_flag = 0;
+            int category_flag = 0;
+            String content = "";
+            String link = "";
+            while ((line = br.readLine()) != null)
+            {
+//                resultLine+=line+"\n";
+                if(line.startsWith("==========================")) {
+                    if (start_flag == 1) {
+                        RecordContent newRecore = new RecordContent(companyName, link, content);
+                        DBInsertor.InsertRecord(newRecore);
+                        link_flag = 1;
+                        content = "";
+                    } else {
+                        start_flag = 1;
+                        link_flag = 1;
+                    }
                 }
-                else//some garbage, just ignore
+                else if(link_flag == 1)
                 {
-                    continue;
+                    link = line;
+                    link_flag = 0;
+                    category_flag = 1;
+                }
+                else if(category_flag == 1)
+                {
+                    category_flag = 0;
+                }
+                else
+                {
+                    content += line;
                 }
             }
+            RecordContent newRecore = new RecordContent(companyName, link, content);
+            DBInsertor.InsertRecord(newRecore);
+            br.close();
+//            String[] splitedString = resultLine.split("======================================================");
+//            for(int i =0;i<splitedString.length;i++)
+//            {
+//                //System.out.println("splitted:"+splitedString[i]);
+//                if(splitedString[i].startsWith("\nhttp"))
+//                {
+//                    splitedString[i] = splitedString[i].substring(1,splitedString[i].length());
+//                    int indexOfEnter = splitedString[i].indexOf("\n");
+//                    String http = splitedString[i].substring(0, indexOfEnter);
+//                    String restOfContent = splitedString[i].substring(indexOfEnter+1,splitedString[i].length());
+//                    //System.out.println(http+restOfContent);
+//                    RecordContent newRecore = new RecordContent(companyName,http,restOfContent);
+//                    //System.out.println("New object created for company:"+companyName+"\t"+http);
+//                    DBInsertor.InsertRecord(newRecore);
+//                }
+//                else//some garbage, just ignore
+//                {
+//                    continue;
+//                }
+//            }
             
         }
         catch (FileNotFoundException e) 
