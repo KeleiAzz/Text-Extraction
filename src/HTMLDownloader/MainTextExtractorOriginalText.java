@@ -28,6 +28,12 @@ public class MainTextExtractorOriginalText {
 	private static StringBuilder text;
 	private static ArrayList<Integer> indexDistribution;
 
+	public static void main(String args[]){
+		String res = HtmlDownloader.getHTML("http://tinyurl.com/KindleWireless", "utf-8");
+		String result = parse(res);
+		System.out.println(result);
+	}
+
 	static {
 		lines = new ArrayList<String>();
 		indexDistribution = new ArrayList<Integer>();
