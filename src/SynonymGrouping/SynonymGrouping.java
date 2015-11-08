@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+	import java.util.regex.Pattern;
 
 /**
  * Created by keleigong on 3/1/15.
@@ -22,7 +22,7 @@ public class SynonymGrouping {
 		sg.extractKeywords();
 	}
 	public void writeFiles(String companyName, String text, int category) throws IOException{
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/sixth run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/auto-rating/7th_sentence/";
 		PrintWriter csvfile;
 //		if (cagtegory.equals("SRM")){
 //			csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_SRM_no_spell_check.csv", true));
@@ -68,8 +68,15 @@ public class SynonymGrouping {
 				csvfile.append('\n'); csvfile.close();
 				break;
 			case 6:
-				System.out.println("For ES");
+				System.out.println("For SUS");
 				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_ES_spell_check_synom.csv", true));
+				csvfile.append(companyName); csvfile.append(',');
+				csvfile.append(text); csvfile.append(',');
+				csvfile.append('\n'); csvfile.close();
+				break;
+			case 7:
+				System.out.println("No category specified");
+				csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2014_spell_check_synom.csv", true));
 				csvfile.append(companyName); csvfile.append(',');
 				csvfile.append(text); csvfile.append(',');
 				csvfile.append('\n'); csvfile.close();
@@ -86,7 +93,7 @@ public class SynonymGrouping {
 //		SynonymCompare sc = new SynonymCompare();
 		HashMap<String,String> sc = getSynonymList();
 		System.out.println(sc);
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/sixth run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/auto-rating/7th_sentence/";
 		String folder = filepath + "e.keyword_category";
 		File[] files = new File(folder).listFiles();
 		Pattern p = Pattern.compile("^[A-Za-z]+$", Pattern.CASE_INSENSITIVE);
@@ -98,20 +105,24 @@ public class SynonymGrouping {
 				if (f.getName().contains("_SS")) {
 					category = 1;
 				}
-				if (f.getName().contains("_SM")) {
+				else if (f.getName().contains("_SM")) {
 					category = 2;
 				}
-				if (f.getName().contains("_CM")) {
+				else if (f.getName().contains("_CM")) {
 					category = 3;
 				}
-				if (f.getName().contains("_SRM")) {
+				else if (f.getName().contains("_SRM")) {
 					category = 4;
 				}
-				if (f.getName().contains("_LHR")) {
+				else if (f.getName().contains("_LHR")) {
 					category = 5;
 				}
-				if (f.getName().contains("_SUS")) {
+				else if (f.getName().contains("_SUS")) {
 					category = 6;
+				}
+				else
+				{
+					category = 7;
 				}
 				System.out.println(f.getName() + " " + category);
 				BufferedReader bf = new BufferedReader(new FileReader(f));

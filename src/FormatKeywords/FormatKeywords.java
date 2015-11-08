@@ -39,7 +39,7 @@ class FormatKeywords{
 	}
 
 	public void writeFiles(String companyName, String text, int category) throws IOException{
-		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/2014_data/sixth run/";
+		String filepath = "/Users/keleigong/Google Drive/SCRC 2015 work/auto-rating/7th_sentence/";
 		PrintWriter csvfile;
 //		if (cagtegory.equals("SRM")){
 //			csvfile = new PrintWriter(new FileWriter(filepath + "f.profiles/profiles_2013_SRM_no_spell_check.csv", true));
